@@ -30,7 +30,7 @@ public class JuegoWORDLE {
 		EstadoLetra[] resultado = compararPalabras(palabraUsuario); //Comparo la palabra secreta con la del usuario
 		nroIntento ++; //Aumento en 1 el intento
 		
-		if (palabraSecreta == palabraUsuario) estado = EstadoJuego.GANO;
+		if (palabraSecreta.equals(palabraUsuario)) estado = EstadoJuego.GANO;
 		else if (nroIntento == cantMaxIntentos) estado = EstadoJuego.PERDIO;
 		else estado = EstadoJuego.JUGANDO;
 		
