@@ -48,6 +48,11 @@ public class JuegoWORDLE {
 		}
 		return resultado;
 	}
+
+	public boolean existePalabra(String palabraActual) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 	
