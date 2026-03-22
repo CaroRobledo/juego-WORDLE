@@ -50,8 +50,7 @@ public class JuegoWORDLE {
 	}
 
 	public boolean existePalabra(String palabraActual) {
-		// TODO Auto-generated method stub
-		return false;
+		return diccionario.contienePalabra(palabraActual);
 	}
 	
 	
