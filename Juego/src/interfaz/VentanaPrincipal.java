@@ -15,17 +15,23 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 
+import controlador.controladorWordle;
 import modelo.EstadoLetra;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal {
 
 	private JFrame frame;
 	private JLabel[] casilleros = new JLabel[30];
 	private Map<String, JButton> letrasTeclado;
+	private controladorWordle controlador = new controladorWordle();
 
 	/**
 	 * Launch the application.
@@ -59,6 +65,8 @@ public class VentanaPrincipal {
 		frame.setBounds(100, 100, 663, 675);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frame.setFocusable(true);
+		frame.requestFocusInWindow();
 		
 		this.letrasTeclado = new HashMap<>();
 		
@@ -277,6 +285,41 @@ public class VentanaPrincipal {
 		letrasTeclado.put("B", b);
 		letrasTeclado.put("N", n);
 		letrasTeclado.put("M", m);
+		
+		for(String letra : this.letrasTeclado.keySet()) {
+			JButton boton = this.letrasTeclado.get(letra);
+			
+			boton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					controlador.recibirLetra(letra);	
+				}
+			});
+		}
+		
+		frame.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int codigo = e.getKeyCode();
+				
+				if (codigo >= KeyEvent.VK_A && codigo <= KeyEvent.VK_Z) {
+		            String letra = String.valueOf(e.getKeyChar()).toUpperCase();
+		            controlador.recibirLetra(letra);
+		        }
+		        
+		        if (codigo == KeyEvent.VK_ENTER) {
+		            controlador.procesarPalabra();
+		        }
+
+		        if (codigo == KeyEvent.VK_BACK_SPACE) {
+		            controlador.borrarLetra();
+		        }
+				
+			}
+		});
+		
 	}
 	
 	private Color obtenerColor(EstadoLetra estado) {
@@ -293,8 +336,10 @@ public class VentanaPrincipal {
 	}
 	
 
-	public void dibujarLetra(int casilleroActual, String string) {
-		// TODO Auto-generated method stub
+	public void dibujarLetra(int casilleroActual, String letra) {
+		JLabel casillero = this.casilleros[casilleroActual];
+		
+		casillero.setText(letra);
 		
 	}
 
@@ -318,5 +363,9 @@ public class VentanaPrincipal {
 	        }
 	    }
 	}
+	
+	
+	
+	
 
 }
