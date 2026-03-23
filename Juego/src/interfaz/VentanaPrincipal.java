@@ -31,7 +31,7 @@ public class VentanaPrincipal {
 	private JFrame frame;
 	private JLabel[] casilleros = new JLabel[30];
 	private Map<String, JButton> letrasTeclado;
-	private controladorWordle controlador = new controladorWordle();
+	private controladorWordle controlador = new controladorWordle(this);
 
 	/**
 	 * Launch the application.
@@ -109,101 +109,121 @@ public class VentanaPrincipal {
 		
 		
 		JButton q = new JButton("Q");
+		q.setFocusable(false);
 		q.setBackground(new Color(245, 245, 245));
 		q.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(q);
 		
 		JButton w = new JButton("W");
+		w.setFocusable(false);
 		w.setBackground(new Color(245, 245, 245));
 		w.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(w);
 		
 		JButton e = new JButton("E");
+		e.setFocusable(false);
 		e.setBackground(new Color(245, 245, 245));
 		e.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(e);
 		
 		JButton r = new JButton("R");
+		r.setFocusable(false);
 		r.setBackground(new Color(245, 245, 245));
 		r.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(r);
 		
 		JButton t = new JButton("T");
+		t.setFocusable(false);
 		t.setBackground(new Color(245, 245, 245));
 		t.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(t);
 		
 		JButton y = new JButton("Y");
+		y.setFocusable(false);
 		y.setBackground(new Color(245, 245, 245));
 		y.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(y);
 		
 		JButton u = new JButton("U");
+		u.setFocusable(false);
 		u.setBackground(new Color(245, 245, 245));
 		u.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(u);
 		
 		JButton i = new JButton("I");
+		i.setFocusable(false);
 		i.setBackground(new Color(245, 245, 245));
 		i.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(i);
 		
 		JButton o = new JButton("O");
+		o.setFocusable(false);
 		o.setBackground(new Color(245, 245, 245));
 		o.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(o);
 		
 		JButton p = new JButton("P");
+		p.setFocusable(false);
 		p.setBackground(new Color(245, 245, 245));
 		p.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(p);
 		
 		JButton a = new JButton("A");
+		a.setFocusable(false);
 		a.setBackground(new Color(245, 245, 245));
 		a.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(a);
 		
 		JButton s = new JButton("S");
+		s.setFocusable(false);
 		s.setBackground(new Color(245, 245, 245));
 		s.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(s);
 		
 		JButton d = new JButton("D");
+		d.setFocusable(false);
 		d.setBackground(new Color(245, 245, 245));
 		d.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(d);
 		
 		JButton f = new JButton("F");
+		f.setFocusable(false);
 		f.setBackground(new Color(245, 245, 245));
 		f.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(f);
 		
 		JButton g = new JButton("G");
+		g.setFocusable(false);
 		g.setBackground(new Color(245, 245, 245));
 		g.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(g);
 		
 		JButton h = new JButton("H");
+		h.setFocusable(false);
 		h.setBackground(new Color(245, 245, 245));
 		h.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(h);
 		
 		JButton j = new JButton("J");
+		j.setFocusable(false);
 		j.setBackground(new Color(245, 245, 245));
 		j.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(j);
 		
 		JButton k = new JButton("K");
+		k.setFocusable(false);
 		k.setBackground(new Color(245, 245, 245));
 		k.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(k);
 		
 		JButton l = new JButton("L");
+		l.setFocusable(false);
 		l.setBackground(new Color(245, 245, 245));
 		l.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(l);
 		
 		JButton ñ = new JButton("Ñ");
+		ñ.setFocusable(false);
 		ñ.setBackground(new Color(245, 245, 245));
 		ñ.setPreferredSize(new Dimension(50, 50));
 		teclado1.add(ñ);
@@ -214,49 +234,72 @@ public class VentanaPrincipal {
 		teclado2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton enviar = new JButton("Enviar");
+		enviar.setFocusable(false);
 		enviar.setBackground(new Color(245, 245, 245));
 		enviar.setPreferredSize(new Dimension(100, 50));
 		teclado2.add(enviar);
 		
+		enviar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.procesarPalabra();
+			}
+		});
+		
 		JButton z = new JButton("Z");
+		z.setFocusable(false);
 		z.setBackground(new Color(245, 245, 245));
 		z.setPreferredSize(new Dimension(50, 50));
 		teclado2.add(z);
 		
 		JButton x = new JButton("X");
+		x.setFocusable(false);
 		x.setBackground(new Color(245, 245, 245));
 		x.setPreferredSize(new Dimension(50, 50));
 		teclado2.add(x);
 		
 		JButton c = new JButton("C");
+		c.setFocusable(false);
 		c.setBackground(new Color(245, 245, 245));
 		c.setPreferredSize(new Dimension(50, 50));
 		teclado2.add(c);
 		
 		JButton v = new JButton("V");
+		v.setFocusable(false);
 		v.setBackground(new Color(245, 245, 245));
 		v.setPreferredSize(new Dimension(50, 50));
 		teclado2.add(v);
 		
 		JButton b = new JButton("B");
+		b.setFocusable(false);
 		b.setBackground(new Color(245, 245, 245));
 		b.setPreferredSize(new Dimension(50, 50));
 		teclado2.add(b);
 		
 		JButton n = new JButton("N");
+		n.setFocusable(false);
 		n.setBackground(new Color(245, 245, 245));
 		n.setPreferredSize(new Dimension(50, 50));
 		teclado2.add(n);
 		
 		JButton m = new JButton("M");
+		m.setFocusable(false);
 		m.setBackground(new Color(245, 245, 245));
 		m.setPreferredSize(new Dimension(50, 50));
 		teclado2.add(m);
 		
 		JButton borrar = new JButton("Borrar");
+		borrar.setFocusable(false);
 		borrar.setBackground(new Color(245, 245, 245));
 		borrar.setPreferredSize(new Dimension(100, 50));
 		teclado2.add(borrar);
+		
+		borrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.borrarLetra();
+			}
+		});
 		
 		letrasTeclado.put("Q", q);
 		letrasTeclado.put("W", w);
@@ -289,8 +332,8 @@ public class VentanaPrincipal {
 		for(String letra : this.letrasTeclado.keySet()) {
 			JButton boton = this.letrasTeclado.get(letra);
 			
+			
 			boton.addActionListener(new ActionListener() {
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					controlador.recibirLetra(letra);	

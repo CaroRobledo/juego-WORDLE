@@ -12,9 +12,12 @@ public class controladorWordle {
 	private VentanaPrincipal interfaz;
 	private JuegoWORDLE juego;
 	
-	public controladorWordle () {
+	public controladorWordle (VentanaPrincipal interfaz) {
+		this.interfaz = interfaz;
+		this.juego = new JuegoWORDLE();
 		this.palabraActual = "";
 		this.casilleroActual = 0;
+		this.limiteLetras = 5;
 	}
 	
 	
@@ -48,8 +51,10 @@ public class controladorWordle {
 				
 				this.interfaz.pintarCasillero(casilleroDestino, estadoLetra);
 			}
+			
+			this.palabraActual = "";
 		}
 		
-		this.palabraActual = "";
+		
 	}
 }
