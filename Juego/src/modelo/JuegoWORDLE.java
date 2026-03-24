@@ -44,6 +44,9 @@ public class JuegoWORDLE {
 		return diccionario.contienePalabra(palabraActual.toUpperCase());
 	}
 	
+	public String descubrirPalabra() {
+		return this.palabraSecreta;
+	}
 	
 	//Metodo de juego
 	public Intento procesarIntento(String palabraUsuario) 

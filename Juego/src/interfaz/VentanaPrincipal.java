@@ -67,6 +67,7 @@ public class VentanaPrincipal {
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.setFocusable(true);
 		frame.requestFocusInWindow();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		this.letrasTeclado = new HashMap<>();
 		
