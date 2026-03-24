@@ -372,7 +372,7 @@ public class VentanaPrincipal {
 		case PRESENTE:
 			return Color.YELLOW;
 		case AUSENTE:
-			return Color.darkGray;
+			return Color.gray;
 		default:
 			return Color.WHITE;
 		}

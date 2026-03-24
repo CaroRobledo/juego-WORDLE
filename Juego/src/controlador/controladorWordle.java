@@ -1,6 +1,9 @@
 package controlador;
 
+import javax.swing.JOptionPane;
+
 import interfaz.VentanaPrincipal;
+import modelo.EstadoJuego;
 import modelo.EstadoLetra;
 import modelo.Intento;
 import modelo.JuegoWORDLE;
@@ -22,7 +25,7 @@ public class controladorWordle {
 	
 	
 	public void recibirLetra (String letra) {
-		if (this.palabraActual.length() < this.limiteLetras) {
+		if (this.palabraActual.length() < this.limiteLetras && this.juego.getEstado() == EstadoJuego.JUGANDO) {
 			this.palabraActual += letra;
 			this.interfaz.dibujarLetra(casilleroActual, letra);
 			this.casilleroActual++;
@@ -41,6 +44,7 @@ public class controladorWordle {
 		if(this.palabraActual.length() == 5 && this.juego.existePalabra(this.palabraActual)) {
 			Intento resultadoIntento = this.juego.procesarIntento(this.palabraActual);
 			EstadoLetra[] estados = resultadoIntento.getResultado();
+			EstadoJuego estadoJuego = this.juego.getEstado();
 			
 			
 			int inicioPalabra = this.casilleroActual - 5;
@@ -52,9 +56,17 @@ public class controladorWordle {
 				this.interfaz.pintarCasillero(casilleroDestino, estadoLetra);
 			}
 			
+			if (estadoJuego == EstadoJuego.GANO) {
+				JOptionPane.showMessageDialog(null, "¡Felicidades, adivinaste la palabra!");
+			} else if(estadoJuego == EstadoJuego.PERDIO) {
+				JOptionPane.showMessageDialog(null, "¡Te quedaste sin intentos! La palabra era: " + this.juego.descubrirPalabra());
+			}
+			
 			this.palabraActual = "";
 		}
 		
 		
 	}
+	
+	
 }
