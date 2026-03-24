@@ -372,7 +372,7 @@ public class VentanaPrincipal {
 		case PRESENTE:
 			return Color.YELLOW;
 		case AUSENTE:
-			return Color.darkGray;
+			return Color.gray;
 		default:
 			return Color.WHITE;
 		}
@@ -389,6 +389,9 @@ public class VentanaPrincipal {
 	public void pintarCasillero(int indice, EstadoLetra estado) {
 	    Color color = obtenerColor(estado);
 	    casilleros[indice].setBackground(color);
+	    
+	    
+	    
 	}
 	
 	public void pintarTeclado(String letra, EstadoLetra estado) {

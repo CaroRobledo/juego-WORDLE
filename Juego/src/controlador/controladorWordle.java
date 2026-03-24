@@ -1,6 +1,7 @@
 package controlador;
 
 import interfaz.VentanaPrincipal;
+import modelo.EstadoJuego;
 import modelo.EstadoLetra;
 import modelo.Intento;
 import modelo.JuegoWORDLE;
@@ -22,7 +23,7 @@ public class controladorWordle {
 	
 	
 	public void recibirLetra (String letra) {
-		if (this.palabraActual.length() < this.limiteLetras) {
+		if (this.palabraActual.length() < this.limiteLetras && this.juego.getEstado() == EstadoJuego.JUGANDO) {
 			this.palabraActual += letra;
 			this.interfaz.dibujarLetra(casilleroActual, letra);
 			this.casilleroActual++;

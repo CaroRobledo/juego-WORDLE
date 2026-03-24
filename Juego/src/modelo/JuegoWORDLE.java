@@ -61,14 +61,49 @@ public class JuegoWORDLE {
 	}
 
 	private EstadoLetra[] compararPalabras(String palabraUsuario) {
-		EstadoLetra[] resultado = new EstadoLetra[5];		
+		//idea de correccion de colores
+		
+		EstadoLetra[] resultado = new EstadoLetra[this.palabraSecreta.length()];
+		
+		boolean[] letrasUsadas = new boolean[this.palabraSecreta.length()];
+		
+		for (int i = 0; i < this.palabraSecreta.length(); i++) {
+			if(palabraUsuario.charAt(i) == (this.palabraSecreta.charAt(i))) {
+				resultado[i] = EstadoLetra.CORRECTA;
+				letrasUsadas[i] = true;
+			}
+		}
+		
+		for (int i = 0; i < this.palabraSecreta.length(); i++) {
+			if(resultado[i] != EstadoLetra.CORRECTA) {
+				resultado[i] = EstadoLetra.AUSENTE;
+				
+				for(int j = 0; j < this.palabraSecreta.length(); j++) {
+					if(palabraUsuario.charAt(i) == this.palabraSecreta.charAt(j) && !letrasUsadas[j]) {
+						resultado[i] = EstadoLetra.PRESENTE;
+						letrasUsadas[j] = true;
+						break;
+					}
+				}
+			}
+		}
+		
+		return resultado;
+		
+		
+		
+		
+		
+		
+		// forma anterior
+	/*	EstadoLetra[] resultado = new EstadoLetra[5];		
 		for (int i = 0; i < palabraSecreta.length(); i++)
 		{
 			if (palabraUsuario.charAt(i) == palabraSecreta.charAt(i)) resultado[i] = EstadoLetra.CORRECTA;
 			else if (palabraSecreta.contains("" + palabraUsuario.charAt(i))) resultado[i] = EstadoLetra.PRESENTE;
 			else resultado[i] = EstadoLetra.AUSENTE;
 		}
-		return resultado;
+		return resultado;*/
 	}
 
 
