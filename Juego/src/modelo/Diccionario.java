@@ -16,6 +16,27 @@ public class Diccionario {
 		listaDePalabras.add("RATON");
 		listaDePalabras.add("COLOR");
 		listaDePalabras.add("NEGRO");
+		listaDePalabras.add("TRATO");
+		listaDePalabras.add("OPERA");
+		listaDePalabras.add("YERBA");
+		listaDePalabras.add("QUESO");
+		listaDePalabras.add("REMAR");
+		listaDePalabras.add("QUEMA");
+		listaDePalabras.add("TALCO");
+		listaDePalabras.add("PRESO");
+		listaDePalabras.add("CIRCO");
+		listaDePalabras.add("HACHA");
+		listaDePalabras.add("MECHA");
+		listaDePalabras.add("LETRA");
+		listaDePalabras.add("ARBOL");
+		listaDePalabras.add("FUEGO");
+		listaDePalabras.add("GENTE");
+		listaDePalabras.add("HERIR");
+		listaDePalabras.add("JAULA");
+		listaDePalabras.add("LIBRO");
+		listaDePalabras.add("NOCHE");
+		listaDePalabras.add("SABIO");
+
 	}
 	
 	

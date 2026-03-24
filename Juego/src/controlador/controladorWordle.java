@@ -41,7 +41,7 @@ public class controladorWordle {
 	}
 	
 	public void procesarPalabra() {
-		if(this.palabraActual.length() == 5 && this.juego.existePalabra(this.palabraActual)) {
+		if(this.palabraActual.length() == limiteLetras) { // Se elimino porque generaba problemas: this.juego.existePalabra(this.palabraActual) 
 			Intento resultadoIntento = this.juego.procesarIntento(this.palabraActual);
 			EstadoLetra[] estados = resultadoIntento.getResultado();
 			EstadoJuego estadoJuego = this.juego.getEstado();
