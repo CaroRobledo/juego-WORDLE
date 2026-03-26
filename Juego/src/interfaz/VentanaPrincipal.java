@@ -32,7 +32,9 @@ public class VentanaPrincipal {
 	private JLabel[] casilleros = new JLabel[30];
 	private Map<String, JButton> letrasTeclado;
 	private controladorWordle controlador = new controladorWordle(this);
-
+	private JLabel labelIntentos;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -70,18 +72,25 @@ public class VentanaPrincipal {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		this.letrasTeclado = new HashMap<>();
+
+		labelIntentos = new JLabel("Intentos restantes: 6");
+		labelIntentos.setHorizontalAlignment(SwingConstants.CENTER);
+		labelIntentos.setFont(new Font("Yu Gothic", Font.BOLD, 20));
+		labelIntentos.setForeground(Color.BLACK);
+		
+		frame.getContentPane().add(labelIntentos, BorderLayout.NORTH);
 		
 		JPanel grillaJuego = new JPanel();
 		grillaJuego.setBackground(new Color(255, 255, 255));
-		frame.getContentPane().add(grillaJuego, BorderLayout.NORTH);
+		frame.getContentPane().add(grillaJuego, BorderLayout.CENTER);
 		grillaJuego.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+
 		JPanel casillerosPanel = new JPanel();
 		casillerosPanel.setBackground(new Color(255, 255, 255));
 		grillaJuego.add(casillerosPanel);
 		casillerosPanel.setLayout(new GridLayout(0, 5, 5, 5));
 		
-
+		grillaJuego.add(casillerosPanel);
 		for (int i = 0; i < 30; i++) {
 		    casilleros[i] = new JLabel("");
 		    casilleros[i].setPreferredSize(new Dimension(60, 60));
@@ -245,7 +254,7 @@ public class VentanaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				controlador.procesarPalabra();
 			}
-		});
+		})																		;
 		
 		JButton z = new JButton("Z");
 		z.setFocusable(false);
@@ -300,6 +309,21 @@ public class VentanaPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				controlador.borrarLetra();
 			}
+		});
+		
+		JButton reiniciar = new JButton("Reiniciar");
+		reiniciar.setFocusable(false);
+		reiniciar.setBackground(new Color(245, 245, 245));
+		reiniciar.setPreferredSize(new Dimension(120, 50));
+		teclado2.add(reiniciar);
+		
+		reiniciar.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        controlador.reiniciarJuego();
+		        limpiarTablero();
+		        
+		    }
 		});
 		
 		letrasTeclado.put("Q", q);
@@ -410,9 +434,21 @@ public class VentanaPrincipal {
 	        }
 	    }
 	}
+	public void limpiarTablero() {
+	    for (int i = 0; i < casilleros.length; i++) {
+	        casilleros[i].setText("");
+	        casilleros[i].setBackground(new Color(245, 245, 245));
+	    }
+
+	    for (JButton boton : letrasTeclado.values()) {
+	        boton.setBackground(new Color(245, 245, 245));
+	    }
+	}
 	
-	
-	
+	public void mostrarIntentos(int intentos) {
+	    //frame.setTitle("Intentos restantes: " + intentos);
+		labelIntentos.setText("Intentos restantes: " + intentos);
+	}
 	
 
 }

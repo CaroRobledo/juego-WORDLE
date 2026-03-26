@@ -110,6 +110,11 @@ public class JuegoWORDLE {
 	}
 
 
+	public void reiniciar() {
+	    this.palabraSecreta = diccionario.damePalabraRandom(); // nueva palabra
+	    this.nroIntento = 0; // volver a 0 intentos
+	    this.estado = EstadoJuego.JUGANDO; // volver al estado inicial
+	}
 
 
 	
