@@ -33,7 +33,7 @@ public class VentanaPrincipal {
 	private Map<String, JButton> letrasTeclado;
 	private controladorWordle controlador = new controladorWordle(this);
 	private JLabel labelIntentos;
-	
+
 	
 	/**
 	 * Launch the application.
@@ -246,7 +246,7 @@ public class VentanaPrincipal {
 		JButton enviar = new JButton("Enviar");
 		enviar.setFocusable(false);
 		enviar.setBackground(new Color(245, 245, 245));
-		enviar.setPreferredSize(new Dimension(100, 50));
+		enviar.setPreferredSize(new Dimension(110, 50));
 		teclado2.add(enviar);
 		
 		enviar.addActionListener(new ActionListener() {
@@ -301,7 +301,7 @@ public class VentanaPrincipal {
 		JButton borrar = new JButton("Borrar");
 		borrar.setFocusable(false);
 		borrar.setBackground(new Color(245, 245, 245));
-		borrar.setPreferredSize(new Dimension(100, 50));
+		borrar.setPreferredSize(new Dimension(120, 50));
 		teclado2.add(borrar);
 		
 		borrar.addActionListener(new ActionListener() {
@@ -321,7 +321,7 @@ public class VentanaPrincipal {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        controlador.reiniciarJuego();
-		        limpiarTablero();
+		     
 		        
 		    }
 		});
@@ -435,6 +435,7 @@ public class VentanaPrincipal {
 	    }
 	}
 	public void limpiarTablero() {
+	
 	    for (int i = 0; i < casilleros.length; i++) {
 	        casilleros[i].setText("");
 	        casilleros[i].setBackground(new Color(245, 245, 245));

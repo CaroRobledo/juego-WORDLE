@@ -107,7 +107,9 @@ public class controladorWordle {
 	}
 	
 	public void reiniciarJuego() {
+		 this.casilleroActual = 0;
 	    juego.reiniciar();
+	    interfaz.limpiarTablero();
 	    interfaz.mostrarIntentos(juego.intentosRestantes());
 	}
 	
