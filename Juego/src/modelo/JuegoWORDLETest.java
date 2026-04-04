@@ -2,64 +2,112 @@ package modelo;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class JuegoWORDLETest {
 
+	private JuegoWORDLE juego;
+	
+	//Inicio del juego
+	@Before
+	public void inicializar() {
+	    juego = new JuegoWORDLE("PERRO");
+	}	
+	
 	@Test
-	public void testExistePalabraValida() 
+	public void estadoInicialEsJugandoTest() {
+	    assertEquals(EstadoJuego.JUGANDO, juego.getEstado());
+	}
+	
+	@Test
+	public void numeroIntentoInicialTest() {
+	    assertEquals(6, juego.intentosRestantes());
+	}
+	
+	
+	@Test
+	public void existePalabraEnDiccionarioTest() 
 	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
 		assertTrue(juego.existePalabra("PERRO"));
 	}
 	
-	@Test
-	public void testExistePalabraInvalida() 
-	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
-		assertFalse(juego.existePalabra("CASAS"));
-	}
 	
 	@Test
-	public void testGanaSiAciertaLaPalabra() 
+	public void noExistePalabraEnDiccionarioTest() 
 	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
-		
-		juego.procesarIntento("PERRO");
-		
+		assertFalse(juego.existePalabra("HAHAH"));
+	}
+	
+	
+	@Test
+	public void ganaSiAciertaLaPalabraPrimerIntentoTest() 
+	{
+		juego.procesarIntento("PERRO");		
+		assertEquals(EstadoJuego.GANO, juego.getEstado());
+	}
+	
+	
+	@Test
+	public void ganaSiAciertaLaPalabraQuintoIntentoTest() 
+	{
+		juego.procesarIntento("GATOS");	
+		juego.procesarIntento("GATOS");	
+		juego.procesarIntento("GATOS");	
+		juego.procesarIntento("GATOS");	
+		juego.procesarIntento("PERRO");		
 		assertEquals(EstadoJuego.GANO, juego.getEstado());
 	}
 	
 	@Test
-	public void testPierdePorCantMaxIntentos() 
+	public void erraPalabraPeroSigueJugandoTest() 
 	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
-		
+		juego.procesarIntento("GATOS");		
+		assertEquals(EstadoJuego.JUGANDO, juego.getEstado());
+	}
+	
+	
+	@Test
+	public void pierdePorAgotarIntentosTest() 
+	{
 		juego.procesarIntento("TIGRE");
 		juego.procesarIntento("TIGRE");
 		juego.procesarIntento("TIGRE");
 		juego.procesarIntento("TIGRE");
 		juego.procesarIntento("TIGRE");
-		juego.procesarIntento("TIGRE");
-		
+		juego.procesarIntento("TIGRE");	
 		assertEquals(EstadoJuego.PERDIO, juego.getEstado());
 	}
 
+	
 	@Test
-	public void testDisminuyeIntentoPorPalabraIncorrecta() 
+	public void aceptaPalabrasEnMinusculaTest() 
 	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
-		
+		juego.procesarIntento("gatos");		
+		assertEquals(EstadoJuego.JUGANDO, juego.getEstado());
+	}
+	
+	
+	@Test
+	public void ganaConPalabraEnMinusculaTest() 
+	{
+		juego.procesarIntento("perro");		
+		assertEquals(EstadoJuego.GANO, juego.getEstado());
+	}
+	
+	
+	@Test
+	public void disminuyeIntentoPorPalabraIncorrectaTest() 
+	{
 		juego.procesarIntento("TIGRE");
-		
 		assertEquals(5, juego.intentosRestantes());
 	}
 	
+	
 	@Test
-	public void testChequeoEstadoCorrecto() 
+	public void todasEnEstadoCorrectoTest() 
 	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
-		
+
 		Intento intento = juego.procesarIntento("PERRO");
 		EstadoLetra[] resultado = intento.getResultado();
 		
@@ -70,11 +118,11 @@ public class JuegoWORDLETest {
 		assertEquals(EstadoLetra.CORRECTA, resultado[4]);
 	}
 	
+	
 	@Test
-	public void testChequeoEstadoAusente() 
+	public void chequeoEstadoAusenteTest() 
 	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
-		
+
 		Intento intento = juego.procesarIntento("PERNO");
 		EstadoLetra[] resultado = intento.getResultado();
 		
@@ -86,10 +134,9 @@ public class JuegoWORDLETest {
 	}
 	
 	@Test
-	public void testChequeoEstadoPresente() 
+	public void chequeoEstadoPresenteTest() 
 	{
-		JuegoWORDLE juego = new JuegoWORDLE("PERRO");
-		
+
 		Intento intento = juego.procesarIntento("PORRE");
 		EstadoLetra[] resultado = intento.getResultado();
 		

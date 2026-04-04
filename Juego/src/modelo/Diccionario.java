@@ -35,7 +35,14 @@ public class Diccionario {
 		listaDePalabras.add("JAULA");
 		listaDePalabras.add("LIBRO");
 		listaDePalabras.add("NOCHE");
-		listaDePalabras.add("SABIO");
+		listaDePalabras.add("PERNO");
+		listaDePalabras.add("HUECO");
+		listaDePalabras.add("TECHO");
+		listaDePalabras.add("PECHO");
+		listaDePalabras.add("GRAFO");
+		listaDePalabras.add("DENSO");
+		listaDePalabras.add("MARTE");
+	
 
 	}
 	
