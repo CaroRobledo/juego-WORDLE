@@ -41,34 +41,25 @@ public class controladorWordle {
 	}
 	
 	public void procesarPalabra() {
-		/*if(this.palabraActual.length() == limiteLetras && this.juego.existePalabra(this.palabraActual)) {  
-			Intento resultadoIntento = this.juego.procesarIntento(this.palabraActual);
-			EstadoLetra[] estados = resultadoIntento.getResultado();
-			EstadoJuego estadoJuego = this.juego.getEstado();
-			
-			
-			int inicioPalabra = this.casilleroActual - 5;
-			
-			for (int i = 0; i < 5; i++) {
-				int casilleroDestino = inicioPalabra + i;
-				EstadoLetra estadoLetra = estados[i];
-				
-				this.interfaz.pintarCasillero(casilleroDestino, estadoLetra);
-			}
-			
-			if (estadoJuego == EstadoJuego.GANO) {
-				JOptionPane.showMessageDialog(null, "¡Felicidades, adivinaste la palabra!");
-			} else if(estadoJuego == EstadoJuego.PERDIO) {
-				JOptionPane.showMessageDialog(null, "¡Te quedaste sin intentos! La palabra era: " + this.juego.descubrirPalabra());
-			}
-			
-			this.palabraActual = "";
-		}
-		*/
+		
 		if (this.palabraActual.length() == limiteLetras) {
 
 	        if (!this.juego.existePalabra(this.palabraActual)) {
 	            JOptionPane.showMessageDialog(null, "La palabra no existe en el diccionario");
+	            
+	            int inicioPalabra = this.casilleroActual - limiteLetras;
+
+	            // Borra la fila visualmente 
+	            for (int i = 0; i < limiteLetras; i++) {
+	                this.interfaz.dibujarLetra(inicioPalabra + i, "");
+	            }
+
+	            // Reinicia el cursor
+	            this.casilleroActual = inicioPalabra;
+
+	            // Resetea la palabra 
+	            this.palabraActual = "";
+
 	            return;
 	        }
 
@@ -107,7 +98,7 @@ public class controladorWordle {
 	}
 	
 	public void reiniciarJuego() {
-		 this.casilleroActual = 0;
+		this.casilleroActual = 0;
 	    juego.reiniciar();
 	    interfaz.limpiarTablero();
 	    interfaz.mostrarIntentos(juego.intentosRestantes());
